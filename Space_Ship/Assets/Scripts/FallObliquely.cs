@@ -17,7 +17,7 @@ public class FallObliquely : MonoBehaviour
     void Update()
     {
         // transform.localPosition += new Vector3(-2.5f, -2, 0)*Time.deltaTime;
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(-3.5f,-2.5f,0);
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(-3f,-6f,0);
         transform.localEulerAngles += new Vector3(0,0, 30)*Time.deltaTime;
 
     }
