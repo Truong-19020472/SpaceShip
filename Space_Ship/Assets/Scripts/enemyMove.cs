@@ -19,11 +19,11 @@ public class enemyMove : MonoBehaviour
         Debug.Log("log normal");
         checkTurn();
         if(isRight == true ) {
-        ri.velocity = new Vector2(7.5f,0);
+        ri.velocity = new Vector2(8.5f,0);
         m.flipX = false;
         }
         else {
-        ri.velocity = new Vector2(-7.5f,0);
+        ri.velocity = new Vector2(-9f,0);
         m.flipX = true;
         }
         
