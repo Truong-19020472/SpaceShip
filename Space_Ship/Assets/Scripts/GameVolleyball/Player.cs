@@ -23,8 +23,8 @@ public class Player : MonoBehaviour
         if(Input.GetKey("right"))
         {
             // riplayer.velocity = new Vector2 (6, 0);
-            //transform.position = new Vector3(Mathf.Clamp(transform.position.x + velocity*Time.deltaTime, leftX, rightX), transform.position.y, 0);
-            transform.DOJump(new Vector3(transform.position.x + 4, -3.16f, 0), 1, 2, 1).SetEase(Ease.Linear);
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x + velocity*Time.deltaTime, leftX, rightX), transform.position.y, 0);
+            // transform.DOJump(new Vector3(transform.position.x + 4, -3.16f, 0), 1, 2, 1).SetEase(Ease.Linear);
             sprite.flipX = false;
             return;
         }
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     }
     void Jump() {
         isGround = false;
-        transform.DOMoveY(1f, 0.2f).SetEase(Ease.OutExpo).SetLoops(2, LoopType.Yoyo).OnComplete(SetGround);
+        transform.DOMoveY(-0.8f, 0.3f).SetEase(Ease.OutExpo).SetLoops(2, LoopType.Yoyo).OnComplete(SetGround);
     }
     bool isGround = true;
     bool CanJump() {

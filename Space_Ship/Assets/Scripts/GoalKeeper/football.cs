@@ -19,38 +19,40 @@ public class football : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        riBall.velocity = Vector2.ClampMagnitude(riBall.velocity, 15);
+        
         if(transform.position.y < -5.3f || transform.position.y > 5.3f) {
-            transform.position = beginPosition; 
-            riBall.velocity = Vector2.zero;
-            riBall.isKinematic = true;
-            StartCoroutine(Sleep());
+            ResetPosition();
         }
     }
     void OnCollisionEnter2D (Collision2D other) {
         if(other.gameObject.name == "Keeper") {
             riBall.AddForce(-(player.transform.position - transform.position) , ForceMode2D.Impulse);
+            // riBall.velocity = Vector2.ClampMagnitude(riBall.velocity, 15);
+            riBall.velocity = riBall.velocity.normalized * 12;
             isGoUp = true;
             // riBall.velocity = -(player.transform.position - transform.position)*10;
         }
         if(other.gameObject.name == "Enemy") {
             riBall.AddForce((transform.position - enemy.transform.position), ForceMode2D.Impulse);
+            riBall.velocity = riBall.velocity.normalized * 12;
             isGoUp = false;
         }
 
     }
-    public Text score;
-    int scorePlayer = 0;
-    int scoreEnemy = 0 ;
     void OnTriggerEnter2D (Collider2D other) {
         if(other.gameObject.name == "GoalEnemy") {
-            scorePlayer ++;
-            score.text = scorePlayer + " - " + scoreEnemy;
+            ManageG.instance.ChangeScore(true);
         }
-        else{
-            scoreEnemy ++;
-            score.text = scorePlayer + " - " + scoreEnemy;
-        }
+        else
+        ManageG.instance.ChangeScore(false);
+
+        ResetPosition();
+    }
+    void ResetPosition() {
+        transform.position = beginPosition;
+        riBall.velocity = Vector2.zero;
+        riBall.isKinematic = true;
+        StartCoroutine(Sleep());
     }
     IEnumerator Sleep() {
         yield return new WaitForSeconds(0.5f);

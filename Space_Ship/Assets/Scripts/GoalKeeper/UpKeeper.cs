@@ -19,7 +19,7 @@ public class UpKeeper : MonoBehaviour
     }
     void Start()
     {
-        transform.DOPath(way, 0.9f).SetEase(Ease.Linear).SetLoops(150,LoopType.Yoyo);
+        transform.DOPath(way, 0.9f, PathType.Linear, PathMode.Full3D, 10, null).SetEase(Ease.Linear).SetLoops(-1,LoopType.Yoyo);
         // isRight = true;
         // ri = GetComponent<Rigidbody2D>();
     }
