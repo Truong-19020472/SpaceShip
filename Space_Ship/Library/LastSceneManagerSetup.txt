@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/PikachuGame.unity
+- path: Assets/BangBang/bangbang.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
